@@ -1,0 +1,50 @@
+Use Active parameter pulgin
+
+
+Active Chose Parameter:
+
+def command = 'cat  /home/jenkins/scripts/dblist.txt'
+def proc = command.execute()
+proc.waitFor()              
+
+def output = proc.in.text
+def exitcode= proc.exitValue()
+def error = proc.err.text
+
+if (error) {
+	println "Std Err: ${error}"
+	println "Process exit code: ${exitcode}"
+	return exitcode
+}
+
+//println output.split()
+return output.tokenize()
+
+
+Active Chose Reference Parameter : 
+
+def rit = Dates.substring(0, Dates.length() - 1)
+def ty = Arrays.toString(rit)
+display="cat  /home/jenkins/scripts/"+ty+"/"+ty
+def command = display
+def proc = command.execute()
+proc.waitFor()              
+
+def output = proc.in.text
+def exitcode= proc.exitValue()
+def error = proc.err.text
+
+if (error) {
+	println "Std Err: ${error}"
+	println "Process exit code: ${exitcode}"
+	return exitcode
+}
+
+//println output.split()
+return output.tokenize()
+
+
+
+
+
+//return [command]
